@@ -84,3 +84,10 @@ git clone git@github.com:jhliugit/learngit.gi克隆远程库到本地
 创建+切换分支：git checkout –b name
 合并某分支到当前分支：git merge name
 删除分支：git branch –d name
+
+七、临时退出现场
+git stash  保留现场
+git checkout master  切回到其它分支工作
+git checkout fenzhi1  返回分支
+git stash list  查看保留的现场
+git stash pop   返回现场
