@@ -1,0 +1,76 @@
+yum install git
+
+一、创建新版本库
+初始化 repository  版本库   目录
+这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”
+mkdir  learngit
+cd learngit
+git  init  把这个目录变成Git可以管理的仓库, 会产生一个隐藏目录 .git
+
+二、更新文件
+(1)修改文件        vim  readme.txt
+(2)查看修改        git diff readme.txt
+(3)查看当前状态    git status   修改但没有update 
+(4)进入缓存        git  add readme.txt
+(5)查看当前状态    git status  已update但没提交
+(6)提交           git  commit  -m  "wrote a readme file"  
+(7)查看当前状态    git status  已提交
+
+三、恢复
+(1)查看最近3次提交记录  git log
+# git log --pretty=oneline
+版本号
+a532d0e50e495ba52069b5d4c0fbb9588d712342 third commit
+4fe0c9a22da13840107c4f822cf7af7dde79d070 second commit
+6cf061c6a298797fe76a05cc52e6ab0306bdbed1 wrote readme file
+
+(2)回退版本
+HEAD表示当前版本 上一个版本就是HEAD^ 上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+git reset --hard HEAD^   返回上一个版本
+git reset --hard 3628164  返回指定版本
+
+(3)查找历史操作记录 git reflog 用来记录每一次命令
+48de4d HEAD@{0}: HEAD^: updating HEAD
+0a4c698 HEAD@{1}: HEAD^: updating HEAD
+0521806 HEAD@{2}: commit: ok
+0a4c698 HEAD@{3}: commit: 333
+248de4d HEAD@{4}: commit: 12
+879897a HEAD@{5}: commit (initial): write a first text
+
+(4)使用版本号回退
+git reset --hard 0521806
+
+
+(5)删除当前编辑器修改
+git checkout -- file 可以丢弃工作区的修改表示从暂存区中把test.txt拎出来，覆盖到工作区
+                  --很重要，没有--，就变成了“切换到另一个分支”的命令
+git reset HEAD  file可以把暂存区的修改撤销掉（unstage），重新放回工作区
+
+
+四、删除
+（1）直接用rm  test.txt
+ (2)git rm test.txt 是同时删除了工作区的test.txt文件，并且将删除的动作提交到了暂存区
+    这时，如果要恢复执行两步
+    git reset HEAD test.txt
+    git checkout -- test.txt
+（2）提交删除 git commit -m "rm sec"
+    这时恢复只能回退版本
+
+
+五、远程
+下载
+$ cat .ssh/config
+Host github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 22
+#git clone git@github.com:jhliugit/learngit.git
+
+git config --global user.name "jhliugit"
+git config --global user.email "13660313156@139.com"
+
+echo "# gittest" >> README.md
+git initgit add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:jhliugit/gittest.git
+git push -u origin master
