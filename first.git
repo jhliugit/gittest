@@ -69,6 +69,7 @@ Port 22
 
 git config --global user.name "jhliugit"
 git config --global user.email "my-email.com"
+git config --global color.ui true  显示颜色，会让命令输出看起来更醒目
 
 echo "# gittest" >> README.md
 git initgit add README.md
