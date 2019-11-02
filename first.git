@@ -75,3 +75,4 @@ git commit -m "first commit"
 git remote add origin git@github.com:jhliugit/gittest.git
 git push -u origin master
 git push origin master  从现在起，只要本地作了提交，就可以直接推送
+git clone git@github.com:jhliugit/learngit.gi克隆远程库到本地
