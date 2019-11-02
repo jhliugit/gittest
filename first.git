@@ -67,7 +67,7 @@ Port 22
 #git clone git@github.com:jhliugit/learngit.git
 
 git config --global user.name "jhliugit"
-git config --global user.email "13660313156@139.com"
+git config --global user.email "my-email.com"
 
 echo "# gittest" >> README.md
 git initgit add README.md
