@@ -1,0 +1,13 @@
+import configparser
+cf = configparser.ConfigParser(allow_no_value=True)
+cf.read('my.cnf')
+print("sections = ", cf.sections())
+print(cf.has_section('client'))
+print(cf.options('client'))
+print(cf.get('client', 'port'))
+print(cf.items('client'))
+cf.remove_section('client')
+cf.add_section('newline')
+cf.set('newline', 'host', '127.0.0.1')
+cf.set('newline', 'port', '3306')
+cf.write(open('my_copy.cnf', 'w'))
